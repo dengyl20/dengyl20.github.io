@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Name | Academic Homepage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Academic homepage of Your Name" />
+  <!-- 可选：Google 字体，如不需要可删除下面两行 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #f5f7fb;
+      --bg-elevated: #ffffff;
+      --bg-alt: #edf2f7;
+      --primary: #2563eb;
+      --primary-soft: #e0ecff;
+      --accent: #f59e0b;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --border-soft: #e5e7eb;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.12);
+      --radius-lg: 1.5rem;
+      --radius-md: 1rem;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      color: var(--text-main);
+      background: radial-gradient(circle at top left, #e0f2fe 0, transparent 50%),
+                  radial-gradient(circle at bottom right, #e5e7eb 0, transparent 50%),
+                  var(--bg-color);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1100px, 100% - 3rem);
+      margin: 0 auto;
+    }
+
+    /* Header / Navigation */
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(248, 250, 252, 0.9), rgba(248, 250, 252, 0.7));
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+      transition: box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .site-header--scrolled {
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+      background: rgba(248, 250, 252, 0.98);
+      border-bottom-color: rgba(209, 213, 219, 0.7);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 0;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 1rem;
+      background: radial-gradient(circle at 20% 0, #bfdbfe, #2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #f9fafb;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.6);
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      font-size: 1.05rem;
+    }
+
+    .brand-tagline {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-link {
+      position: relative;
+      padding: 0.2rem 0;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.25rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+      transition: width 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link.active {
+      color: var(--text-main);
+    }
+
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-link-ghost {
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: var(--text-main);
+      background: rgba(248, 250, 252, 0.9);
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .nav-link-ghost:hover {
+      background: rgba(241, 245, 249, 0.9);
+      border-color: rgba(148, 163, 184, 1);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    /* Sections / layout */
+
+    main {
+      padding-top: 70px; /* header height offset */
+    }
+
+    section {
+      scroll-margin-top: 90px;
+    }
+
+    .section {
+      padding: 100px 0;
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .section-header {
+      max-width: 650px;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      margin: 0 0 0.4rem;
+      letter-spacing: 0.02em;
+    }
+
+    .section-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #6b7280;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .section-alt {
+      background: linear-gradient(180deg, rgba(248, 250, 252, 0.95), rgba(226, 232, 240, 0.9));
+      border-top: 1px solid rgba(226, 232, 240, 0.9);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    .subheading {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0 0 0.7rem;
+    }
+
+    /* Hero / Home section */
+
+    .hero {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      gap: 3.5rem;
+    }
+
+    .hero-main {
+      flex: 3;
+    }
+
+    .hero-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 3vw, 3rem);
+      margin: 0 0 0.4rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(120deg, #2563eb, #f97316);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      margin: 0 0 1rem;
+      font-size: 1.02rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      margin-bottom: 1.4rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .hero-meta-label {
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: var(--radius-pill);
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #f9fafb;
+      box-shadow: 0 18px 35px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 45px rgba(37, 99, 235, 0.55);
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.8);
+      color: #111827;
+      border: 1px solid rgba(148, 163, 184, 0.8);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(249, 250, 251, 0.95);
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .hero-link {
+      padding: 0.2rem 0.4rem;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      text-decoration: none;
+    }
+
+    .hero-link:hover {
+      text-decoration: none;
+      border-color: rgba(148, 163, 184, 1);
+    }
+
+    .hero-aside {
+      flex: 2;
+      position: relative;
+    }
+
+    .profile-card {
+      position: relative;
+      background: radial-gradient(circle at top left, rgba(219, 234, 254, 0.9), rgba(248, 250, 252, 0.98));
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 1.75rem;
+      overflow: hidden;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.15), transparent 55%),
+        radial-gradient(circle at 100% 0, rgba(59, 130, 246, 0.25), transparent 60%),
+        radial-gradient(circle at 0 100%, rgba(249, 115, 22, 0.18), transparent 55%);
+      opacity: 0.7;
+      z-index: 0;
+    }
+
+    .profile-card-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .profile-avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 1.2rem;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.4);
+      background: #cbd5f5;
+      flex-shrink: 0;
+    }
+
+    .profile-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .profile-name {
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .profile-title {
+      font-size: 0.86rem;
+      color: #374151;
+    }
+
+    .profile-affiliation,
+    .profile-location {
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+
+    .profile-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      padding: 0.18rem 0.65rem;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      font-size: 0.76rem;
+      color: #4b5563;
+      white-space: nowrap;
+    }
+
+    .profile-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: #374151;
+      flex-wrap: wrap;
+    }
+
+    .profile-status-pill {
+      padding: 0.2rem 0.7rem;
+      border-radius: var(--radius-pill);
+      background: rgba(22, 163, 74, 0.12);
+      border: 1px solid rgba(22, 163, 74, 0.3);
+      color: #166534;
+      font-weight: 500;
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .profile-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
+    }
+
+    .profile-highlight {
+      text-align: right;
+      flex: 1;
+      color: #4b5563;
+    }
+
+    .profile-highlight strong {
+      color: #111827;
+    }
+
+    .scroll-down {
+      position: absolute;
+      left: 50%;
+      bottom: -3.2rem;
+      transform: translateX(-50%);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .scroll-down-icon {
+      width: 20px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(156, 163, 175, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-down-icon::after {
+      content: "";
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #6b7280;
+      transform: translateX(-50%);
+      animation: scroll-dot 1.6s infinite;
+    }
+
+    @keyframes scroll-dot {
+      0% {
+        transform: translate(-50%, 0);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      80% {
+        transform: translate(-50%, 14px);
+        opacity: 0;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* About section */
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    .card {
+      background: var(--bg-elevated);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+    }
+
+    .card-soft {
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+      background: linear-gradient(135deg, rgba(248, 250, 252, 0.96), rgba(239, 246, 255, 0.9));
+    }
+
+    .about-text p {
+      margin: 0 0 0.8rem;
+      font-size: 0.95rem;
+      color: #374151;
+    }
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.2rem;
+    }
+
+    .about-meta-item {
+      font-size: 0.83rem;
+      color: #4b5563;
+    }
+
+    .about-meta-label {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
+    .pill {
+      padding: 0.22rem 0.65rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      font-size: 0.78rem;
+      background: rgba(255, 255, 255, 0.9);
+      color: #4b5563;
+    }
+
+    .pill-strong {
+      background: var(--primary-soft);
+      border-color: rgba(129, 140, 248, 0.9);
+      color: #1d4ed8;
+      font-weight: 500;
+    }
+
+    .about-research-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.8rem 0 0;
+      font-size: 0.9rem;
+      color: #374151;
+    }
+
+    .about-research-list li {
+      margin-bottom: 0.4rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .about-research-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--primary);
+      margin-top: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .about-side-header {
+      font-size: 0.83rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+    }
+
+    .about-highlight {
+      margin-top: 1.2rem;
+      padding: 0.9rem 1rem;
+      border-radius: var(--radius-md);
+      background: rgba(16, 185, 129, 0.06);
+      border: 1px dashed rgba(16, 185, 129, 0.5);
+      font-size: 0.8rem;
+      color: #065f46;
+    }
+
+    /* News & Updates */
+
+    .news-year {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #6b7280;
+      margin-top: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .news-timeline {
+      position: relative;
+      margin-top: 1.2rem;
+      padding-left: 1.6rem;
+    }
+
+    .news-timeline::before {
+      content: "";
+      position: absolute;
+      left: 0.45rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(37, 99, 235, 0.85), transparent);
+      opacity: 0.55;
+    }
+
+    .news-item {
+      position: relative;
+      margin-bottom: 0.9rem;
+      padding: 1.1rem 1.2rem 1.1rem 1.35rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid rgba(229, 231, 235, 0.98);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    .news-item::before {
+      content: "";
+      position: absolute;
+      left: -0.55rem;
+      top: 1.35rem;
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: #2563eb;
+      box-shadow: 0 0 0 4px rgba(191, 219, 254, 0.95);
+    }
+
+    .news-meta {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 0.3rem;
+    }
+
+    .news-meta span {
+      font-weight: 500;
+      color: #111827;
+    }
+
+    .news-title {
+      margin: 0 0 0.25rem;
+      font-size: 0.96rem;
+      font-weight: 600;
+    }
+
+    .news-description {
+      margin: 0;
+      font-size: 0.88rem;
+      color: #4b5563;
+    }
+
+    .news-tags {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      font-size: 0.76rem;
+    }
+
+    .news-tag {
+      padding: 0.15rem 0.55rem;
+      border-radius: var(--radius-pill);
+      background: rgba(239, 246, 255, 0.95);
+      border: 1px solid rgba(191, 219, 254, 0.95);
+      color: #1d4ed8;
+    }
+
+    /* Publications */
+
+    .pub-section {
+      margin-top: 1.5rem;
+    }
+
+    .pub-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .chip-button {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.8);
+      background: rgba(248, 250, 252, 0.95);
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: #374151;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .chip-button:hover {
+      background: rgba(241, 245, 249, 0.98);
+      border-color: rgba(148, 163, 184, 1);
+      transform: translateY(-1px);
+    }
+
+    .pub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.3rem;
+      margin-top: 1rem;
+    }
+
+    .pub-card {
+      border-radius: var(--radius-lg);
+      background: var(--bg-elevated);
+      border: 1px solid rgba(229, 231, 235, 0.98);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.09);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pub-card-featured .pub-image-placeholder {
+      min-height: 150px;
+    }
+
+    .pub-image-placeholder {
+      background: repeating-linear-gradient(
+        135deg,
+        rgba(219, 234, 254, 0.9) 0,
+        rgba(219, 234, 254, 0.9) 6px,
+        rgba(191, 219, 254, 0.9) 6px,
+        rgba(191, 219, 254, 0.9) 12px
+      );
+      position: relative;
+    }
+
+    .pub-image-placeholder::after {
+      content: "Main figure / thumbnail";
+      position: absolute;
+      bottom: 0.7rem;
+      right: 0.9rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.7);
+      color: #e5e7eb;
+      font-size: 0.7rem;
+    }
+
+    .pub-content {
+      padding: 1.2rem 1.35rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.88rem;
+    }
+
+    .pub-meta {
+      font-size: 0.78rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 600;
+    }
+
+    .pub-title {
+      margin: 0.05rem 0;
+      font-size: 0.98rem;
+      font-weight: 600;
+    }
+
+    .pub-authors,
+    .pub-venue {
+      margin: 0;
+      color: #4b5563;
+    }
+
+    .pub-authors {
+      font-size: 0.86rem;
+    }
+
+    .pub-author-highlight {
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
+    .pub-venue {
+      font-size: 0.82rem;
+      color: #6b7280;
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.35rem;
+    }
+
+    .pub-link {
+      font-size: 0.8rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      background: rgba(249, 250, 251, 0.96);
+      text-decoration: none;
+      color: #1f2933;
+    }
+
+    .pub-link:hover {
+      border-color: rgba(148, 163, 184, 0.9);
+      text-decoration: none;
+    }
+
+    .pub-abstract {
+      margin: 0.45rem 0 0;
+      font-size: 0.83rem;
+      color: #4b5563;
+    }
+
+    .pub-list {
+      margin-top: 0.9rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.6rem;
+      font-size: 0.86rem;
+    }
+
+    .pub-list-item {
+      padding: 0.5rem 0.1rem;
+      border-bottom: 1px dashed rgba(209, 213, 219, 0.9);
+    }
+
+    .pub-list-item:last-child {
+      border-bottom: none;
+    }
+
+    .pub-list-title {
+      font-weight: 500;
+    }
+
+    .pub-list-meta {
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    .pub-list-authors {
+      font-size: 0.82rem;
+      color: #4b5563;
+    }
+
+    .pub-list-links {
+      font-size: 0.78rem;
+      margin-top: 0.15rem;
+    }
+
+    .pub-list-links a {
+      margin-right: 0.6rem;
+    }
+
+    .pub-list-collapsible {
+      display: none;
+    }
+
+    .pub-list-collapsible.is-expanded {
+      display: grid;
+    }
+
+    /* Footer */
+
+    .site-footer {
+      padding: 2rem 0 2.4rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(209, 213, 219, 0.9);
+      padding-top: 1.2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #6b7280;
+    }
+
+    .footer-links a:hover {
+      color: #111827;
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2rem;
+      }
+
+      .hero-main {
+        order: 1;
+      }
+
+      .hero-aside {
+        order: 2;
+      }
+
+      .profile-card {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .brand-tagline {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-inner {
+        padding: 0.7rem 0;
+        align-items: flex-start;
+      }
+
+      .nav {
+        font-size: 0.86rem;
+        gap: 0.75rem;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-main {
+        text-align: left;
+      }
+
+      .hero-actions {
+        flex-wrap: wrap;
+      }
+
+      .scroll-down {
+        display: none;
+      }
+
+      .about-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .brand-name {
+        font-size: 1rem;
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .profile-top {
+        flex-direction: row;
+      }
+
+      .profile-avatar {
+        width: 90px;
+        height: 90px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home">
+        <div class="brand-logo">Y</div>
+        <div class="brand-text">
+          <!-- TODO: 替换为你的名字 & tagline -->
+          <span class="brand-name">Your Name</span>
+          <span class="brand-tagline">Your Field · Academic Homepage</span>
+        </div>
+      </a>
+      <nav class="nav">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#news" class="nav-link">News</a>
+        <a href="#publications" class="nav-link">Publications</a>
+        <a href="#" class="nav-link nav-link-ghost">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Home / Hero -->
+    <section id="home" class="section hero is-visible">
+      <div class="container hero">
+        <div class="hero-main">
+          <div class="hero-kicker">Welcome</div>
+          <!-- TODO: 替换姓名与头衔 -->
+          <h1 class="hero-title">
+            I am <span class="highlight">Your Name</span>.
+          </h1>
+          <p class="hero-subtitle">
+            Short one-line description about yourself, e.g. "Ph.D. candidate in Computer Science at XYZ University,
+            focusing on machine learning and its applications to scientific discovery."
+          </p>
+
+          <div class="hero-meta">
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Affiliation</span>
+              <span>Department · University</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Email</span>
+              <span>name [at] institution.edu</span>
+            </div>
+            <div class="hero-meta-item">
+              <span class="hero-meta-label">Location</span>
+              <span>City, Country</span>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <!-- TODO: 将 href 替换为你的 CV 链接，如 /cv.pdf -->
+            <a href="#" class="btn btn-primary">Download CV</a>
+            <!-- TODO: 替换为你的邮箱地址 -->
+            <a href="mailto:your.name@institution.edu" class="btn btn-secondary">Email me</a>
+          </div>
+
+          <div class="hero-links">
+            <!-- TODO: 替换这些链接 -->
+            <a href="#" class="hero-link">Google Scholar</a>
+            <a href="https://github.com/your-username" class="hero-link">GitHub</a>
+            <a href="#" class="hero-link">LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="hero-aside">
+          <div class="profile-card">
+            <div class="profile-card-content">
+              <div class="profile-top">
+                <!-- TODO: 替换头像路径为你的头像，如 images/avatar.jpg -->
+                <img class="profile-avatar" src="https://via.placeholder.com/300x300.png?text=Your+Photo" alt="Your portrait" />
+                <div class="profile-meta">
+                  <div class="profile-name">Your Name</div>
+                  <div class="profile-title">Ph.D. Candidate / Assistant Professor</div>
+                  <div class="profile-affiliation">Department of Something, University of Somewhere</div>
+                  <div class="profile-location">City, Country</div>
+                </div>
+              </div>
+
+              <div class="profile-tags">
+                <!-- TODO: 替换为你的几个关键词 -->
+                <span class="tag">Machine Learning</span>
+                <span class="tag">Scientific Computing</span>
+                <span class="tag">AI for Science</span>
+              </div>
+
+              <div class="profile-footer">
+                <div class="profile-status-pill">
+                  <span class="profile-status-dot"></span>
+                  <span>Open to collaborations</span>
+                </div>
+                <div class="profile-highlight">
+                  <strong>Currently:</strong> Short status such as "visiting researcher at Lab XYZ" or "on the job market".
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#about" class="scroll-down">
+            <span>Scroll</span>
+            <span class="scroll-down-icon"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About / Research interests -->
+    <section id="about" class="section">
+      <div class="container section-inner">
+        <div class="section-header">
+          <div class="section-kicker">About me</div>
+          <h2 class="section-title">Short bio &amp; research interests</h2>
+          <p class="section-subtitle">
+            Use this section for a concise introduction and a high-level overview of what you work on.
+          </p>
+        </div>
+
+        <div class="about-layout">
+          <div class="card card-soft">
+            <div class="about-text">
+              <!-- TODO: 填写个人简介 -->
+              <p>
+                I am a <strong>Ph.D. student in Computer Science</strong> at XYZ University, advised by
+                Prof. Advisor Name. My research lies at the intersection of <strong>machine learning</strong>,
+                <strong>optimization</strong>, and <strong>domain-specific applications</strong> such as
+                scientific discovery and computational physics.
+              </p>
+              <p>
+                Before joining XYZ, I obtained my B.Sc. in Mathematics from ABC University. I have also spent
+                time as a research intern at Lab / Company, working on topics related to representation learning
+                and large-scale training.
+              </p>
+              <p>
+                My long-term goal is to build learning systems that are <strong>robust, data-efficient, and scientifically grounded</strong>,
+                enabling principled decision making in high-stakes applications.
+              </p>
+
+              <div class="about-meta-grid">
+                <div class="about-meta-item">
+                  <div class="about-meta-label">Education</div>
+                  B.Sc. in Mathematics, ABC University<br />
+                  Ph.D. in Computer Science, XYZ University
+                </div>
+                <div class="about-meta-item">
+                  <div class="about-meta-label">Advisors / mentors</div>
+                  Prof. Advisor Name (XYZ University)<br />
+                  Dr. Mentor Name (Some Lab)
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="about-side-header">Research interests</div>
+            <!-- TODO: 用你的 research interests 替换 -->
+            <ul class="about-research-list">
+              <li>
+                <span class="about-research-bullet"></span>
+                <span>
+                  <strong>Representation learning</strong> for high-dimensional scientific data, such as simulations
+                  and experimental measurements.
+                </span>
+              </li>
+              <li>
+                <span class="about-research-bullet"></span>
+                <span>
+                  <strong>Optimization and generalization</strong> in deep networks, with a focus on stability,
+                  robustness, and out-of-distribution performance.
+                </span>
+              </li>
+              <li>
+                <span class="about-research-bullet"></span>
+                <span>
+                  <strong>AI for Science</strong>, including differentiable programming, surrogate modeling, and
+                  integrating physical priors into learning systems.
+                </span>
+              </li>
+            </ul>
+
+            <div style="margin-top: 1.25rem;">
+              <div class="about-side-header">Topics &amp; keywords</div>
+              <div class="pill-row">
+                <!-- TODO: 修改为你自己的关键词 -->
+                <span class="pill pill-strong">Machine learning theory</span>
+                <span class="pill">Representation learning</span>
+                <span class="pill">Optimization</span>
+                <span class="pill">AI for Science</span>
+                <span class="pill">Physics-informed ML</span>
+              </div>
+            </div>
+
+            <div class="about-highlight">
+              I am always happy to discuss potential collaborations, especially on projects related to
+              ML for scientific discovery, robust learning, or foundation models for scientific data.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News & Updates -->
+    <section id="news" class="section section-alt">
+      <div class="container section-inner">
+        <div class="section-header">
+          <div class="section-kicker">News &amp; updates</div>
+          <h2 class="section-title">Recent papers, talks &amp; activities</h2>
+          <p class="section-subtitle">
+            Use this section to keep a brief timeline of your latest publications, invited talks, service, and other updates.
+          </p>
+        </div>
+
+        <div>
+          <!-- TODO: 按年份组织你的动态 -->
+          <div class="news-year">2025</div>
+          <div class="news-timeline">
+            <article class="news-item">
+              <div class="news-meta">
+                <span>Nov 2025</span> · Conference
+              </div>
+              <h3 class="news-title">Paper accepted at Conference Name (CONF 2025)</h3>
+              <p class="news-description">
+                Our work on "Title of Your Paper" was accepted at Conference Name. The paper studies XYZ and
+                proposes a new method for ABC.
+              </p>
+              <div class="news-tags">
+                <span class="news-tag">New paper</span>
+                <span class="news-tag">Machine Learning</span>
+              </div>
+            </article>
+
+            <article class="news-item">
+              <div class="news-meta">
+                <span>Sep 2025</span> · Talk
+              </div>
+              <h3 class="news-title">Invited talk at Some Workshop</h3>
+              <p class="news-description">
+                I gave an invited talk on "Title of Talk" at the Workshop on Something, covering recent results
+                on representation learning for scientific applications.
+              </p>
+              <div class="news-tags">
+                <span class="news-tag">Talk</span>
+                <span class="news-tag">Workshop</span>
+              </div>
+            </article>
+
+            <article class="news-item">
+              <div class="news-meta">
+                <span>Jul 2025</span> · Service
+              </div>
+              <h3 class="news-title">Program committee / reviewer service</h3>
+              <p class="news-description">
+                Serving as a reviewer for Conference A 2025 and Journal B.
+              </p>
+              <div class="news-tags">
+                <span class="news-tag">Service</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="news-year">2024</div>
+          <div class="news-timeline">
+            <article class="news-item">
+              <div class="news-meta">
+                <span>Dec 2024</span> · Milestone
+              </div>
+              <h3 class="news-title">Started Ph.D. at XYZ University</h3>
+              <p class="news-description">
+                Joined the ABC Lab at XYZ University as a Ph.D. student, advised by Prof. Advisor Name.
+              </p>
+              <div class="news-tags">
+                <span class="news-tag">Ph.D.</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section id="publications" class="section">
+      <div class="container section-inner">
+        <div class="section-header">
+          <div class="section-kicker">Publications</div>
+          <h2 class="section-title">Selected work &amp; full list</h2>
+          <p class="section-subtitle">
+            Highlight a few representative works with figures, and maintain a compact list of all publications below.
+          </p>
+        </div>
+
+        <!-- Selected publications as modular cards -->
+        <div class="pub-section">
+          <h3 class="subheading">Selected publications</h3>
+          <div class="pub-grid">
+            <!-- TODO: 每个代表作一张卡片 -->
+            <article class="pub-card pub-card-featured">
+              <div class="pub-image-placeholder"></div>
+              <div class="pub-content">
+                <div class="pub-meta">Conference · 2025</div>
+                <h3 class="pub-title">Title of your representative paper</h3>
+                <p class="pub-authors">
+                  First Author*, Second Author, <span class="pub-author-highlight">Your Name</span>, et al.
+                </p>
+                <p class="pub-venue">
+                  In Proceedings of Conference Name (CONF 2025), pp. 1–12.
+                </p>
+                <div class="pub-links">
+                  <!-- TODO: 替换链接 -->
+                  <a href="#" class="pub-link">Paper</a>
+                  <a href="#" class="pub-link">Code</a>
+                  <a href="#" class="pub-link">Slides</a>
+                </div>
+                <p class="pub-abstract">
+                  One- or two-sentence summary of the main contribution of this work. Focus on what is new and why it matters.
+                </p>
+              </div>
+            </article>
+
+            <article class="pub-card pub-card-featured">
+              <div class="pub-image-placeholder"></div>
+              <div class="pub-content">
+                <div class="pub-meta">Journal · 2024</div>
+                <h3 class="pub-title">Another key representative work</h3>
+                <p class="pub-authors">
+                  <span class="pub-author-highlight">Your Name</span>, Coauthor Name, Coauthor Name.
+                </p>
+                <p class="pub-venue">
+                  Journal Name, Volume X, Issue Y, 2024.
+                </p>
+                <div class="pub-links">
+                  <a href="#" class="pub-link">Paper</a>
+                  <a href="#" class="pub-link">Code</a>
+                </div>
+                <p class="pub-abstract">
+                  Brief description of the problem, your approach, and the main empirical or theoretical findings.
+                </p>
+              </div>
+            </article>
+
+            <article class="pub-card pub-card-featured">
+              <div class="pub-image-placeholder"></div>
+              <div class="pub-content">
+                <div class="pub-meta">Workshop · 2023</div>
+                <h3 class="pub-title">Workshop paper / extended abstract</h3>
+                <p class="pub-authors">
+                  Third Author, <span class="pub-author-highlight">Your Name</span>, et al.
+                </p>
+                <p class="pub-venue">
+                  Workshop on Something, co-located with Big Conference 2023.
+                </p>
+                <div class="pub-links">
+                  <a href="#" class="pub-link">Paper</a>
+                  <a href="#" class="pub-link">Poster</a>
+                </div>
+                <p class="pub-abstract">
+                  Short description, e.g. preliminary work, ongoing project, or a negative result you want to highlight.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- All publications (collapsible older list) -->
+        <div class="pub-section">
+          <div class="pub-section-header">
+            <h3 class="subheading">All publications</h3>
+            <!-- 展开/收起按钮：通过 data-target 绑定下面的列表 -->
+            <button class="chip-button" type="button" data-toggle="pubs" data-target="all-publications">
+              Show all
+            </button>
+          </div>
+
+          <!-- TODO: 将最新若干篇论文可以直接写在上面，这里再放更长的列表 -->
+          <div class="pub-list pub-list-collapsible" id="all-publications">
+            <article class="pub-list-item">
+              <div class="pub-list-title">Title of Paper A</div>
+              <div class="pub-list-authors">
+                First Author, <span class="pub-author-highlight">Your Name</span>, Third Author
+              </div>
+              <div class="pub-list-meta">
+                Conference / Journal, 2025.
+              </div>
+              <div class="pub-list-links">
+                <a href="#">paper</a>
+                <a href="#">code</a>
+              </div>
+            </article>
+
+            <article class="pub-list-item">
+              <div class="pub-list-title">Title of Paper B</div>
+              <div class="pub-list-authors">
+                <span class="pub-author-highlight">Your Name</span>, Coauthor
+              </div>
+              <div class="pub-list-meta">
+                Workshop, 2024.
+              </div>
+              <div class="pub-list-links">
+                <a href="#">paper</a>
+              </div>
+            </article>
+
+            <article class="pub-list-item">
+              <div class="pub-list-title">Title of Paper C</div>
+              <div class="pub-list-authors">
+                Coauthor, Coauthor, <span class="pub-author-highlight">Your Name</span>
+              </div>
+              <div class="pub-list-meta">
+                Journal, 2023.
+              </div>
+              <div class="pub-list-links">
+                <a href="#">paper</a>
+              </div>
+            </article>
+
+            <!-- 继续添加更多作品 -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <!-- TODO: 修改版权信息 -->
+        © 2025 Your Name. Last updated: Dec 2025.
+      </div>
+      <div class="footer-links">
+        <!-- TODO: 修改为你的链接 -->
+        <a href="mailto:your.name@institution.edu">Email</a>
+        <a href="https://github.com/your-username">GitHub</a>
+        <a href="#">Google Scholar</a>
+        <a href="#">Twitter</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const header = document.querySelector(".site-header");
+      const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+      const sections = document.querySelectorAll("section[id]");
+      const hero = document.querySelector("#home");
+
+      // Ensure hero is visible on load
+      if (hero) {
+        hero.classList.add("is-visible");
+      }
+
+      // Smooth scrolling for nav links
+      navLinks.forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          const targetId = this.getAttribute("href").slice(1);
+          const target = document.getElementById(targetId);
+          if (target) {
+            event.preventDefault();
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      // Smooth scroll for "scroll" indicator
+      const scrollDown = document.querySelector(".scroll-down");
+      if (scrollDown) {
+        scrollDown.addEventListener("click", function (event) {
+          const href = this.getAttribute("href");
+          if (href && href.startsWith("#")) {
+            const target = document.querySelector(href);
+            if (target) {
+              event.preventDefault();
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        });
+      }
+
+      // IntersectionObserver for fade-in and nav highlighting
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              const id = entry.target.getAttribute("id");
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                if (id) {
+                  document.querySelectorAll(".nav-link").forEach(function (link) {
+                    const href = link.getAttribute("href");
+                    if (href && href === "#" + id) {
+                      link.classList.add("active");
+                    } else if (href && href.startsWith("#")) {
+                      link.classList.remove("active");
+                    }
+                  });
+                }
+              }
+            });
+          },
+          {
+            threshold: 0.3
+          }
+        );
+
+        sections.forEach(function (section) {
+          observer.observe(section);
+        });
+      } else {
+        // Fallback: if no IntersectionObserver, show all sections
+        sections.forEach(function (section) {
+          section.classList.add("is-visible");
+        });
+      }
+
+      // Header shadow on scroll
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 10) {
+          header.classList.add("site-header--scrolled");
+        } else {
+          header.classList.remove("site-header--scrolled");
+        }
+      });
+
+      // Toggle older publications
+      const toggleButtons = document.querySelectorAll('[data-toggle="pubs"]');
+      toggleButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          const targetId = this.getAttribute("data-target");
+          const target = document.getElementById(targetId);
+          if (target) {
+            const expanded = target.classList.toggle("is-expanded");
+            this.textContent = expanded ? "Hide older publications" : "Show all";
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
