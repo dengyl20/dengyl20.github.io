@@ -21,7 +21,7 @@ window.SITE_CONTENT = {
     location: "Abu Dhabi, United Arab Emirates",
 
     // 链接
-    cvUrl: "#", // 例如 "assets/cv/your-cv.pdf"
+    cvUrl: "https://drive.google.com/uc?export=download&id=1qRZZhFbhS8ztidcEWCRWP3M9L8rKR-GI", // 例如 "assets/cv/your-cv.pdf"
     scholarUrl: "https://scholar.google.com/citations?user=uLt40REAAAAJ",
     githubUrl: "https://github.com/dengyl20",
     linkedinUrl: "#",
