@@ -67,12 +67,12 @@ window.SITE_CONTENT = {
       {
         title: "LLM reasoning",
         description:
-          "Revisiting LLM reasoning from a causal perspective to understand its latent selection mechanisms and to improve reasoning reliability, self-refinement, and generalization on complex tasks."
+          "Revisiting LLM reasoning from a causal perspective to understand its latent selection mechanisms and to improve reasoning reliability and generalization on complex tasks."
       },
       {
         title: "LLM post-training",
         description:
-          "Studying LLM post-training, especially self-supervised SFT pipelines that construct training signals automatically, together with more efficient RL with verifiable rewards (RLVR) and on-policy distillation."
+          "Studying LLM post-training, especially self-supervised SFT pipelines that construct training signals automatically, together with more efficient RLVR and on-policy distillation."
       }
     ],
 
